@@ -3,20 +3,25 @@ include("connect.php");
 
 $result = false;
 
-$name = isset($_GET['name'])?$_GET['name']:'';
-$image = isset($_GET['image'])?$_GET['image']:'';
+$name = isset($_GET['name']) ? $_GET['name'] : '';
+$image = isset($_GET['image']) ? $_GET['image'] : '';
 
-$username = $_GET['uname'];
-$password = $_GET['pword'];
+$username = isset($_GET['username']) ? $_GET['username'] : '';
+$password = isset($_GET['password']) ? $_GET['password'] : '';
 
-$query = "INSERT INTO `users`(`name`, `user_image`, `username`, `password`) VALUES ('".$name."','".$image."','".$username."','".$password."')";
+if ($username == '' || $password == '') {
 
-$check = $DB->query($query);
+    $query = "INSERT INTO `users`(`name`, `user_image`, `username`, `password`) VALUES ('" . $name . "','" . $image . "','" . $username . "','" . $password . "')";
 
-if($check===true){
-    $result=true;
-} else {
-    $result=false;
+    $check = $DB->query($query);
+
+    if ($check === true) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    echo json_encode(["register" => $result]);
+}else {
+    echo json_encode(["register" => false]);
 }
-
-echo json_encode(["register"=>$result]);

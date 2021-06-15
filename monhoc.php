@@ -1,12 +1,13 @@
 <?php
 include("connect.php");
 
-$result = false;
+$result = [
+    "monhoc"=>[]
+];
 
-$username = isset($_GET['username']) ? $_GET['username'] : '';
-$password = isset($_GET['password']) ? $_GET['password'] : '';
+$user_id =isset($_GET['user_id']) ? $_GET['user_id'] : '';
 
-if ($username == '' || $password == '') {
+if ($username == '') {
 
     $query = "SELECT * FROM `users` WHERE username ='" . $username . "' and password ='" . $password . "';";
 
