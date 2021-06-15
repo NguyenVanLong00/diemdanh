@@ -3,8 +3,9 @@ include("connect.php");
 
 $result = false;
 
-$name = $_GET['name'];
+$name = isset($_GET['name'])?$_GET['name']:'';
 $image = isset($_GET['image'])?$_GET['image']:'';
+
 $username = $_GET['uname'];
 $password = $_GET['pword'];
 
@@ -18,4 +19,4 @@ if($check===true){
     $result=false;
 }
 
-echo json_encode(["login"=>$result]);
+echo json_encode(["register"=>$result]);
