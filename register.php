@@ -10,7 +10,9 @@ $username = isset($_GET['username']) ? $_GET['username'] : '';
 $password = isset($_GET['password']) ? $_GET['password'] : '';
 
 if ($username == '' || $password == '') {
-
+    echo json_encode(["register" => false]);
+    
+}else {
     $query = "INSERT INTO `users`(`name`, `user_image`, `username`, `password`) VALUES ('" . $name . "','" . $image . "','" . $username . "','" . $password . "')";
 
     $check = $DB->query($query);
@@ -22,6 +24,4 @@ if ($username == '' || $password == '') {
     }
 
     echo json_encode(["register" => $result]);
-}else {
-    echo json_encode(["register" => false]);
 }
